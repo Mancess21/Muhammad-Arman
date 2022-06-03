@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block konten%}
+
+<div class="jumbotron">
+    <h3>Pengaduan</h3>
+    <form method="POST">
+        {{form.hidden_tag()}}
+
+        <div class="form-group">
+            {{form.kategori.label(class="form-control-label")}}
+            {% if form.kategori.errors %}
+            {{form.kategori(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.kategori.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{form.kategori(class="form-control")}}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{form.keterangan.label(class="form-control-label")}}
+            {% if form.keterangan.errors %}
+            {{form.keterangan(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.keterangan.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{form.keterangan(class="form-control")}}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{form.submit(class="btn btn-primary")}}
+        </div>
+    </form>
+</div>
+<h3>DATA PENGADUAN</h3>
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col-md-9 mb-4">
+        <table class="table table-responsive table-hover table-info">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">tgl Post</th>
+                <th scope="col">kategori</th>
+                <th scope="col">keterangan</th>
+                <th scope="col">id mahasiswa</th>
+                <th>edit</th>
+                <th>hapus</th>
+            </tr>
+            {%for data in Data%}
+            <tr>
+                <td></td>
+                <td>{{data.tgl_post}}</td>
+                <td>{{data.kategori}}</td>
+                <td>{{data.keterangan}}</td>
+                <td>{{data.penduduk_id}} / {{data.penduduk.nama}}</td>
+                <td><a href="" class="btn btn-warning btn-xs" data-toggle="modal"
+                        data-target="#modalEdit{{data.id}}">Edit</a></td>
+                <td><a href="/hapus_A/{{data.id}}" class="btn btn-danger btn-xs"
+                        onclick="return confirm('Yakin ingin hapus')">Hapus</a> </td>
+
+            </tr>
+
+            <div id="modalEdit{{data.id}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- modal konten -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Data</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url_for ('Suser.editpengaduan')}}" method="POST">
+
+
+                                <div class="form-group">
+                                    <label>Kategori:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <input type="text" class="form-control" name="kategori" value="{{data.kategori}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <input type="text" class="form-control" name="keterangan"
+                                        value="{{data.keterangan}}">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit">simpan</button>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock%}

@@ -1,0 +1,71 @@
+{%extends "base2.html"%} {%block title%}
+<h3 class="display-5">SELAMAT DATANG</h3>
+<p class="lead">Di Sistem Informasi Desa Tembal</p>
+{%endblock%} {%block kontent%}
+<div class="row row-cols-1 row-cols-md-3">
+  <div class="col mb-4">
+    <div class="card">
+      <img
+        src="{{url_for('static', filename='img/1.jpeg')}}"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">Pengambilan Data</h5>
+        <p class="card-text">
+          This is a longer card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <img
+        src="{{url_for('static', filename='img/0.jpeg')}}"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          This is a longer card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <img
+        src="{{url_for('static', filename='img/9.jpeg')}}"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          This is a longer card with supporting text below as a natural lead-in
+          to additional content.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <img
+        src="{{url_for('static', filename='img/5.jpeg')}}"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">Taman Kalumpang</h5>
+        <p class="card-text">
+          This is a longer card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

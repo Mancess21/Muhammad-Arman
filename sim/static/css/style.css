@@ -1,0 +1,19 @@
+.warna-bg {
+  background: linear-gradient(
+    to right,
+    rgba(0, 81, 255, 0.92),
+    rgba(77, 129, 239, 0.92)
+  );
+}
+
+.jumbotron-bg {
+  background: url(../img/ternate.jpg);
+  background-size: cover;
+  background-size: 500px;
+}
+
+body {
+  background-image: url(../img/bgg.jpg);
+  background-size: cover;
+  border: #cccccc;
+}

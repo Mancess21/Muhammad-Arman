@@ -1,0 +1,34 @@
+{%extends "base.html"%}
+
+{%block title%}
+<h3 class="display-5">Sistem Informasi Desa Tembal</h3>
+<p class="lead">Data Demografis Desa Tembal</p>
+{%endblock%}
+
+{%block konten%}
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col-md-12 mb-4">
+        <table class="table table-hover table-light">
+            <tr>
+                <th>Tahun</th>
+                <th>Jumlah Laki-Laki</th>
+                <th>Jumlah Perempuan</th>
+                <th>Laju Pertumbuhan</th>
+            </tr>
+            {%for data in Data%}
+            <tr>
+
+                <td>{{data.tahun}}</td>
+                <td>{{data.jumlah_l}}</td>
+                <td>{{data.jumlah_p}}</td>
+                <td>{{data.laju_pertumbuhan}}</td>
+            </tr>
+
+
+            {%endfor%}
+
+        </table>
+    </div>
+
+</div>
+{%endblock%}

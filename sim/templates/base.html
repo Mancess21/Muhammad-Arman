@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css')}}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css')}}"/>
+    <title>Selamat Datang | Website Desa Tembal</title>
+    <link
+      rel="icon"
+      type="img/logo.png"
+      href="{{ url_for ('static', filename=' img/logo.png')}}"
+    />
+  </head>
+
+  <body>
+    <!-- awal navbar -->
+    <header>
+      <nav class="navbar warna-bg navbar-expand-lg navbar-light">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <a class="navbar-brand fw-bold" href="#"><img src="../static/img/Logo.png"
+                width="50px"
+                height="50px"
+                alt=""
+                class=""
+            /></a>
+            <div style="float: left">
+              <a
+                class="navbar-brand"
+                style="font-size: 20px; color: #fff"
+                href="#"
+                >Kantor Desa</a
+              ><br />
+              <b style="color: #fff">Kec. Bacan Selatan</b>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div style="padding-left: 610px">
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+      <!-- Navbar -->
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  href="{{url_for('Suser.home')}}"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                  Profil Desa
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#"></a>
+                  <a class="dropdown-item" href="{{url_for('Suser.profil')}}">Profil</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Data Desa
+                </a>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li><a class="dropdown-item" href="#">Kependudukan</a></li>
+                  <li><a class="dropdown-item" href="#">-</a></li>
+                </ul>
+              </li>
+              {%if current_user.is_authenticated%}
+              <a href="{{ url_for ('Suser.logout_admin')}}" class="btn btn-danger">Logout<span
+                class="sr-only">(current)</span></a>
+                {%else%}
+                <li>
+                  <a class="dropdown-item" href="{{url_for('Suser.user')}}">Login<span
+                    class="sr-only">(current)</span></a></a>
+                  </li>
+                  {%endif%}
+                </ul>
+            
+              <a class="icon navbar-brand fw-bold" href="#"
+                ><img
+                  src="../static/img/facebook.gif"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                  class=""
+              /></a>
+              <a class="icon navbar-brand fw-bold" href="#"
+              ><img
+                  src="../static/img/youtube.gif"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                  class=""
+              /></a>
+              <a class="icon navbar-brand fw-bold" href="#"
+                ><img
+                  src="../static/img/ig.gif"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                  class=""
+              /></a>
+              <a class="icon navbar-brand fw-bold" href="#"
+                ><img
+                  src="../static/img/whatsapp.gif"
+                  width="20px"
+                  height="20px"
+                  alt=""
+                  class=""
+              /></a>
+
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- akhir navbar -->
+
+    <!-- Awal jumbotron -->
+    <section class="jumbotron-bg">
+      <div class="jumbotron warna-bg text-white">
+        <div class="container">
+          {%block title%} {%endblock%} {%if current_user.is_authenticated%}
+          {%else%} {%endif%}
+        </div>
+      </div>
+    </section>
+    <!-- Akhir jumbotron -->
+
+    <!-- Awal konten -->
+    <div class="container">
+      <!--flash-->
+      {% with messages= get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, massage in messages %}
+
+      <div class="alert alert-{{category}}">{{massage}}</div>
+      {% endfor %} {% endif %} {% endwith %} {%block konten%} {%endblock%}
+    </div>
+    <!-- Akhir konten -->
+
+    <!-- AWal jumbotron2 -->
+    <div class="container pb-4 pt-4 mb-4">
+      <div class="row">
+        <div class="col-md-12"></div>
+      </div>
+    </div>
+    <!-- Akhir jumbotron2 -->
+
+    <!-- Awal footer -->
+    <footer class="warna-bg">
+      <div class="text-white text-center pt-3 pb-3 mt-4">
+        @Copyright 2022 - Website Desa Tembal
+      </div>
+    </footer>
+    <!-- Akhir footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="{{ url_for ('static', filename='js/jquery-3.2.1.slim.min.js')}}"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="{{ url_for ('static', filename='js/popper.min.js')}}"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="{{ url_for ('static', filename='js/bootstrap.min.js')}}"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{ url_for ('static', filename='js/style.js')}}"></script>
+  </body>
+</html>

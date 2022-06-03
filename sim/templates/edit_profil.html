@@ -1,0 +1,34 @@
+{%extends "base2.html"%}
+
+{%block title%}
+<h3 class="display-5">Sistem Informasi Kelurahan Kalumpang</h3>
+<p class="lead">Sejarah Kelurahan Kalumpang</p>
+{%endblock%}
+
+
+{%block konten%}
+<h1>Megisi data Profil kelurahan kalumpang</h1>
+<form method="POST">
+    {{form.hidden_tag()}}
+    <div class="form-group">
+        {{form.sejarah.label(class="form-control-label")}}
+        {{form.sejarah(class="form-control ")}}
+    </div>
+    <div class="form-group">
+        {{form.tentang_kel.label(class="form-control-label")}}
+        {{form.tentang_kel(class="form-control ")}}
+    </div>
+    <div class="form-group">
+        {{form.visi_misi.label(class="form-control-label")}}
+        {{form.visi_misi(class="form-control ")}}
+    </div>
+
+    <div class="form-group">
+        {{form.submit(class="btn btn-primary")}}
+    </div>
+
+</form>
+
+</div>
+</div>
+{%endblock%}

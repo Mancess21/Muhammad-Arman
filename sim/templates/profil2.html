@@ -1,0 +1,150 @@
+{%extends "base2.html"%}
+
+{%block title%}
+<h3 class="display-5">Sistem Informasi Kelurahan Kalumpang</h3>
+<p class="lead">Sejarah Kelurahan Kalumpang</p>
+{%endblock%}
+
+
+{%block konten%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {%for data in form%}
+            <h3>Nama Desa</h3>
+            <hr>
+            <p>{{data.nama_desa}}</p>
+            <br>
+            <h3>Visi Misi</h3>
+            <hr>
+            <p>{{data.visi_misi}}</p>
+            <br>
+            <h3>Alamat</h3>
+            <hr>
+            <p>{{data.alamat}}</p>
+            <br>
+            <h3>Sejarah</h3>
+            <hr>
+            <p>{{data.sejarah}}</p>
+            <br>
+            <h3>Peraturan</h3>
+            <hr>
+            <p>{{data.peraturan}}</p>
+            <br>
+            <h3>Geografis</h3>
+            <hr>
+            <p>{{data.geografis}}</p>
+            <br>
+            <h3>Peta</h3>
+            <hr>
+            <p>{{data.peta}}</p>
+            <br>
+            <h3>Kontak</h3>
+            <hr>
+            <p>{{data.kontak}}</p>
+            <br>
+            <h3>Logo</h3>
+            <hr>
+            <p>{{data.logo}}</p>
+            <br>
+            {%if current_user.is_authenticated%}
+            <a href="{{url_for('Sadmin.editprofil')}}/{{data.id}}" class="btn btn-warning btn-xs" data-toggle="modal"
+                data-target="#modalEdit{{data.id}}">Edit</a>
+            <a class=" btn btn-info" href="{{ url_for ('Sadmin.isi_data_profil')}}">isi data</a>
+            {%else%}
+            {%endif%}
+
+            <!-- awal edit data pengaduan -->
+            <div id="modalEdit{{data.id}}" class="modal fade " role="dialog">
+                <div class="modal-dialog">
+                    <!-- modal konten -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Data</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url_for('Sadmin.editprofil')}}" method="POST">
+                                <div class="form-group">
+                                    <label>Nama Desa:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="nama_desa id="nama_desa" cols="60"
+                                        rows="10">{{data.nama_desa}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Visi Misi:</label>
+                                    <textarea name="visi_misi" id="visi_misi" cols="60"
+                                        rows="10">{{data.visi_misi}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Alamat:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="alamat" id="alamat cols="60"
+                                        rows="10">{{data.alamat}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sejarah:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="sejarah" id="sejarah" cols="60"
+                                        rows="10">{{data.sejarah}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Peraturan:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="peraturan" id="peraturan" cols="60"
+                                        rows="10">{{data.peraturan}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Geografis:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="geografis id="geografis" cols="60"
+                                        rows="10">{{data.geografis}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Peta:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="peta" id="peta" cols="60"
+                                        rows="10">{{data.peta}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kontak:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="kontak" id="kontak" cols="60"
+                                        rows="10">{{data.kontak}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Logo:</label>
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <textarea name="sejarah" id="sejarah" cols="60"
+                                        rows="10">{{data.logo}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit">simpan</button>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- akhir data pengaduan -->
+            {%endfor%}
+
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{url_for('static', filename='img/1.jpeg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Pengambilan Data</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
